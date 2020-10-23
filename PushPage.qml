@@ -8,7 +8,7 @@ Item {
 
     Connections {
         target: notify
-        onSendingMessage: {
+        function onSendingMessage() {
             pushModel.push(data)
             console.log(JSON.stringify(pushModel))
             pushModelChanged()
@@ -20,7 +20,7 @@ Item {
         x: parent.width/2 - width/2
         y: 20
         text: "Push"
-        onClicked: notify.sendNotification("test", "test")
+        onClicked: notify.sendNotification("Title", "Body")
     }
 
     ListView {

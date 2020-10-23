@@ -8,6 +8,8 @@ import android.app.ActivityManager.RunningTaskInfo;
 import android.app.ActivityManager.RunningAppProcessInfo;
 
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationCompat.MessagingStyle;
+import androidx.core.app.NotificationCompat.InboxStyle;
 import android.os.Build;
 import android.content.Context;
 import android.content.Intent;
@@ -30,7 +32,7 @@ import com.zloi.firebase.test.R;
 
 import org.qtproject.qt5.android.bindings.QtActivity;
 
-public class Notification  extends FirebaseMessagingService {
+public class Notification extends FirebaseMessagingService {
 
     private static final String TAG = "FirebaseMsgService";
 
@@ -74,7 +76,7 @@ public class Notification  extends FirebaseMessagingService {
         return FirebaseInstanceId.getInstance().getToken();
     }
 
-    private void sendNotification(String title, String body) {
+    public void sendNotification(String title, String body) {
         Intent intent = new Intent(this, QtActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,

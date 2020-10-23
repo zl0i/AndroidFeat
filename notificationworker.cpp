@@ -32,7 +32,7 @@ void NotificationWorker::sendNotification(QString, QString)
     //char *titleChar = title.toLocal8Bit().data();
     //char *bodyChar = body.toLocal8Bit().data();
     //qDebug() << titleChar << bodyChar;
-    //m_javaClass.callMethod<void>("sendNotification", "(Ljava/lang/String;Ljava/lang/String;)V", "", ""); //error????
+    m_javaClass.callMethod<jint>("sendNotification", "(Ljava/lang/String;Ljava/lang/String;)V", "test", "test"); //error????
 }
 
 QJsonArray NotificationWorker::getEvents()
