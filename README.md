@@ -1,0 +1,1 @@
+This project was created to study and test Android features.
