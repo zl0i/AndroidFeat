@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>PushPage.qml</file>
         <file>CrashPage.qml</file>
+        <file>qml/components/LinkPopup.qml</file>
     </qresource>
 </RCC>

@@ -8,6 +8,7 @@ CONFIG += c++11
 
 SOURCES += \
         appcore.cpp \
+        deeplinkshandler.cpp \
         main.cpp \
         notificationworker.cpp
 
@@ -25,7 +26,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 ANDROID_ABIS = arm64-v8a
-android: include(G:/Android_Studio_SDK/android_openssl/openssl.pri)
+android: include(G:/Android_SDK/android_openssl/openssl.pri)
 
 DISTFILES += \
     android/AndroidManifest.xml \
@@ -50,10 +51,12 @@ DISTFILES += \
     android/res/values/color.xml \
     android/res/values/libs.xml \
     android/res/values/strings.xml \
+    android/src/com/zloi/firebase/test/CustomActivity.java \
     android/src/com/zloi/firebase/test/Notification.java
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
 HEADERS += \
     appcore.h \
+    deeplinkshandler.h \
     notificationworker.h

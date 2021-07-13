@@ -1,6 +1,8 @@
 import QtQuick 2.15
-import QtQuick.Controls 2.12
-import QtQuick.Window 2.15
+import QtQuick.Controls 2.15
+
+
+import "./qml/components"
 
 ApplicationWindow {
     width: 640
@@ -28,5 +30,12 @@ ApplicationWindow {
         currentIndex: _swipe.currentIndex
     }
 
+    Component.onCompleted: {
+        if(_deepLinks.getLink().length > 0)
+            _linkPopup.show(_deepLinks.getLink())
+    }
 
+    LinkPopup {
+        id: _linkPopup
+    }
 }
