@@ -2,9 +2,9 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-#include "appcore.h"
-#include "notificationworker.h"
-#include "deeplinkshandler.h"
+#include "src/appcore.h"
+#include "src/notificationworker.h"
+#include "src/deeplinkshandler.h"
 
 int main(int argc, char *argv[])
 {

@@ -7,10 +7,10 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        appcore.cpp \
-        deeplinkshandler.cpp \
+        src/appcore.cpp \
+        src/deeplinkshandler.cpp \
         main.cpp \
-        notificationworker.cpp
+        src/notificationworker.cpp
 
 RESOURCES += qml.qrc
 
@@ -57,6 +57,6 @@ DISTFILES += \
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
 HEADERS += \
-    appcore.h \
-    deeplinkshandler.h \
-    notificationworker.h
+    src/appcore.h \
+    src/deeplinkshandler.h \
+    src/notificationworker.h
