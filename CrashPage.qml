@@ -8,6 +8,6 @@ Item {
     Button {
         anchors.centerIn: parent
         text: "Crash"
-        onClicked: appCore.crash()
+        onClicked: _appCore.crash()
     }
 }

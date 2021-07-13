@@ -4,10 +4,10 @@ import QtQuick.Controls.Material 2.12
 
 Item {
 
-    property var pushModel: notify.getEvents()
+    property var pushModel: _notify.getEvents()
 
     Connections {
-        target: notify
+        target: _notify
         function onSendingMessage() {
             pushModel.push(data)
             console.log(JSON.stringify(pushModel))
@@ -20,7 +20,7 @@ Item {
         x: parent.width/2 - width/2
         y: 20
         text: "Push"
-        onClicked: notify.sendNotification("Title", "Body")
+        onClicked: _notify.sendNotification("Title", "Body")
     }
 
     ListView {
