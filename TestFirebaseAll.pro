@@ -26,7 +26,6 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-android: include(G:/Android_SDK/android_openssl/openssl.pri)
 
 android {
 
@@ -59,6 +58,7 @@ android {
         android/src/com/zloi/firebase/test/Notification.java
 
 
+    include(android/openssl.pri)
 
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
