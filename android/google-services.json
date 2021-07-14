@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "320423909826",
-    "firebase_url": "https://testfirebaseall-30d7a.firebaseio.com",
-    "project_id": "testfirebaseall-30d7a",
-    "storage_bucket": "testfirebaseall-30d7a.appspot.com"
+    "project_number": "719482627707",
+    "project_id": "zloi-space",
+    "storage_bucket": "zloi-space.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:320423909826:android:738331515292835f3fde5b",
+        "mobilesdk_app_id": "1:719482627707:android:eccb95864023fa839e24de",
         "android_client_info": {
           "package_name": "com.zloi.firebase.test"
         }
       },
       "oauth_client": [
         {
-          "client_id": "320423909826-1mrj22g4r2r2au3p5e7p78rd13t5p3k3.apps.googleusercontent.com",
+          "client_id": "719482627707-88e1576tr69c7aod60463icf43837q4r.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBKYTk2HoNs4nBHK3vfektllVzcCzVmi4c"
+          "current_key": "AIzaSyDBO6-VMNX3sjCmyhGQ-3vWqxxRrduz7hQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "320423909826-1mrj22g4r2r2au3p5e7p78rd13t5p3k3.apps.googleusercontent.com",
+              "client_id": "719482627707-88e1576tr69c7aod60463icf43837q4r.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
