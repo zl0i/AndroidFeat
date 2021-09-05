@@ -1,8 +1,9 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>qml/PushPage.qml</file>
-        <file>qml/CrashPage.qml</file>
+        <file>qml/FirebasePage.qml</file>
+        <file>qml/OAuthPage.qml</file>
         <file>qml/components/LinkPopup.qml</file>
+        <file>qml/components/OAuthElement.qml</file>
     </qresource>
 </RCC>

@@ -1,4 +1,4 @@
-QT += quick
+QT += quick svg
 QT -= widgets
 
 CONFIG += c++11
@@ -13,7 +13,8 @@ SOURCES += \
         main.cpp \
         src/notificationworker.cpp
 
-RESOURCES += qml.qrc
+RESOURCES += qml.qrc \
+    icons.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -57,10 +58,9 @@ android {
         android/src/com/zloi/firebase/test/CustomActivity.java \
         android/src/com/zloi/firebase/test/Notification.java
 
+    ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
     include(android/openssl.pri)
-
-    ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
     ANDROID_ABIS = arm64-v8a
 

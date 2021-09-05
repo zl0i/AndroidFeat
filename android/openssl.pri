@@ -8,8 +8,6 @@
         $$ANDROID_PACKAGE_SOURCE_DIR/ssl/arm/libcrypto_1_1.so \
         $$ANDROID_PACKAGE_SOURCE_DIR/ssl/arm/libssl_1_1.so
 
-#    message($$ANDROID_ABIS)
-
     contains(ANDROID_ABIS, arm64-v8a) {
         ANDROID_EXTRA_LIBS += \
             $$ANDROID_PACKAGE_SOURCE_DIR/ssl/arm64/libcrypto_1_1.so \

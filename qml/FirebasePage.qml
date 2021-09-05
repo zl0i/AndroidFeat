@@ -4,7 +4,7 @@ import QtQuick.Controls.Material 2.12
 
 Item {
 
-    property var pushModel: _notify.getEvents()
+    property var pushModel: _notify.getDataPush()
 
     Connections {
         target: _notify
@@ -15,12 +15,18 @@ Item {
         }
     }
 
-
-    Button {
+    Row {
         x: parent.width/2 - width/2
         y: 20
-        text: "Push"
-        onClicked: _notify.sendNotification("Title", "Body")
+        Button {
+            text: "Push"
+            onClicked: _notify.sendNotification("Title", "Body")
+        }
+
+        Button {
+            text: "Crash"
+            onClicked: _appCore.crash()
+        }
     }
 
     ListView {

@@ -15,10 +15,11 @@ ApplicationWindow {
     SwipeView {
         id: _swipe
         anchors.fill: parent
-        PushPage {
+        FirebasePage {
 
         }
-        CrashPage {
+
+        OAuthPage {
 
         }
     }

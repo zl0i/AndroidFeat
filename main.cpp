@@ -9,8 +9,9 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    NotificationWorker &worker = NotificationWorker::instansce();
 
+
+    NotificationWorker *worker = NotificationWorker::instance();
 
     QGuiApplication app(argc, argv);
 
@@ -18,8 +19,8 @@ int main(int argc, char *argv[])
 
     AppCore core;
     DeepLinksHandler dlHandler;
-    qDebug() << "push token:" << worker.getToken();
-    engine.rootContext()->setContextProperty("_notify", &worker);
+    qDebug() << "push token:" << worker->getToken();
+    engine.rootContext()->setContextProperty("_notify", worker);
     engine.rootContext()->setContextProperty("_appCore", &core);
     engine.rootContext()->setContextProperty("_deepLinks", &dlHandler);
 

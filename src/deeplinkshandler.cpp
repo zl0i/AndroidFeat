@@ -1,12 +1,16 @@
 #include "deeplinkshandler.h"
 
-#include <QAndroidIntent>
+
 
 DeepLinksHandler::DeepLinksHandler()
 {
-    QAndroidJniObject classObject = QtAndroid::androidActivity();
-    QAndroidJniObject uri = classObject.callObjectMethod<jstring>("getLinkUri");   
-    link.setUrl(uri.toString());    
+#ifdef Q_OS_ANDROID
+    QAndroidJniObject activity = QtAndroid::androidActivity();
+    QAndroidJniObject intent = activity.callObjectMethod("getIntent", "()Landroid/content/Intent;");
+    QAndroidJniObject data = intent.callObjectMethod("getData", "()Landroid/net/Uri;");
+
+    link.setUrl(data.toString());
+#endif
 }
 
 QString DeepLinksHandler::getLink()

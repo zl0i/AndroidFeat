@@ -16,6 +16,12 @@ public class CustomActivity extends org.qtproject.qt5.android.bindings.QtActivit
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        signalIntent(intent.getData().toString());
+    }
+
     public String getLinkUri() {
         Intent intent = getIntent();
         Uri appLinkData = intent.getData();
@@ -24,4 +30,6 @@ public class CustomActivity extends org.qtproject.qt5.android.bindings.QtActivit
         }
         return "";
     }
+
+    public native void signalIntent(String data);
 }

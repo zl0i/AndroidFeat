@@ -2,18 +2,20 @@
 #define DEEPLINKSHANDLER_H
 
 #include <QObject>
-#include <QAndroidJniObject>
-#include <QtAndroid>
 #include <QUrl>
 #include <QDebug>
+
+#ifdef Q_OS_ANDROID
+#include <QAndroidJniObject>
+#include <QtAndroid>
+#include <QAndroidIntent>
+#endif
 
 class DeepLinksHandler : public QObject
 {
     Q_OBJECT
 public:
     DeepLinksHandler();
-
-
 
 private:
     QUrl link;
