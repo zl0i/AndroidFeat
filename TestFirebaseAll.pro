@@ -14,7 +14,7 @@ SOURCES += \
         src/notificationworker.cpp
 
 RESOURCES += qml.qrc \
-    icons.qrc
+        icons.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -60,9 +60,9 @@ android {
 
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
-    include(android/openssl.pri)
-
     ANDROID_ABIS = arm64-v8a
+
+    include(android/openssl.pri)
 
 }
 

@@ -82,7 +82,7 @@ signals:
 public slots:
     QString getToken();
     QJsonObject getDataPush();
-    void sendNotification(QString title, QString body, QString icon, QString data);
+    void sendNotification(QString title, QString body, QString data);
 };
 
 

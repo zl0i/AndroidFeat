@@ -1,4 +1,4 @@
-package org.fusion.board;
+package com.zloi.firebase.test;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -23,7 +23,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.RemoteMessage;
 
-import org.fusion.board.CustomActivity;
+import com.zloi.firebase.test.CustomActivity;
 
 public class Notification extends FirebaseMessagingService {
 
@@ -40,12 +40,9 @@ public class Notification extends FirebaseMessagingService {
             } else {
                 Uri uri = Uri.parse(joinData(data));
                 final String title = data.get("title");
-                final String body = data.get("body");
-                String icon = data.get("largeIcon");
-                if (icon == null)
-                    icon = "";
+                final String body = data.get("body");                
 
-                sendNotification(getApplicationContext(), title, body, icon, uri);
+                sendNotification(getApplicationContext(), title, body, uri);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,7 +69,7 @@ public class Notification extends FirebaseMessagingService {
         return uri;
     }
 
-    public static void sendNotification(Context context, String title, String body, String icon, Uri data) {
+    public static void sendNotification(Context context, String title, String body, Uri data) {
         try {
             Intent intent = new Intent(context, CustomActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -94,8 +91,7 @@ public class Notification extends FirebaseMessagingService {
             }
 
             notificationBuilder
-                    .setSmallIcon(R.drawable.notifyicon)
-                    .setLargeIcon(NotifyIconByType(context, icon))
+                    .setSmallIcon(R.drawable.notificationicon)
                     .setContentTitle(title)
                     .setContentText(body)
                     .setDefaults(NotificationCompat.DEFAULT_SOUND)
@@ -111,28 +107,6 @@ public class Notification extends FirebaseMessagingService {
 
     public static Uri parseUri(String data) {
         return Uri.parse(data);
-    }
-
-    public static Bitmap NotifyIconByType(Context context, String type) {
-        switch (type) {
-            case "openchange":
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.openchange);
-            case "closechange":
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.closechange);
-            case "return_order":
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.returnorder);
-            case "admin_password":
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.adminpassword);
-            case "cash_income":
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.cashincome);
-            case "cash_outcome":
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.cashoutcome);
-            case "crit_qty":
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.criticalqty);
-            case "order_item_delete":
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.deleteorder);
-        }
-        return BitmapFactory.decodeResource(context.getResources(), 0);
     }
 
     private Boolean isAppRunningForeground(final String packageName) {

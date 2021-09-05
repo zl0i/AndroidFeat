@@ -28,7 +28,7 @@ QString NotificationWorker::getToken()
 NotificationWorker::NotificationWorker()
 {
 #ifdef Q_OS_ANDROID
-    notification = QAndroidJniObject("org/fusion/board/Notification");
+    notification = QAndroidJniObject("com/zloi/firebase/test/Notification");
     JNINativeMethod notification_methods[] = {
         {"signalMessage", "(Ljava/lang/String;)V", reinterpret_cast<void*>(NotificationWorker::callbackMessage)},
         {"signalNewToken", "(Ljava/lang/String;)V", reinterpret_cast<void*>(NotificationWorker::newToken)}
@@ -73,30 +73,28 @@ QJsonObject NotificationWorker::getDataPush()
 #endif
 }
 
-void NotificationWorker::sendNotification(QString title, QString body, QString icon, QString data)
+void NotificationWorker::sendNotification(QString title, QString body, QString data)
 {
 #ifdef Q_OS_ANDROID
     QAndroidJniObject titleJni = QAndroidJniObject::fromString(title);
     QAndroidJniObject messageJni = QAndroidJniObject::fromString(body);
-    QAndroidJniObject iconJni = QAndroidJniObject::fromString(icon);
     QAndroidJniObject dataJni = QAndroidJniObject::fromString(data);
     QAndroidJniObject uriJni = QAndroidJniObject::callStaticObjectMethod(
-                "org/fusion/board/Notification",
+                "com/zloi/firebase/test/Notification",
                 "parseUri",
                 "(Ljava/lang/String;)Landroid/net/Uri;",
                 dataJni.object<jstring>()
                 );
 
     QAndroidJniObject::callStaticMethod<void>(
-                "org/fusion/board/Notification",
+                "com/zloi/firebase/test/Notification",
                 "sendNotification",
-                "(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/net/Uri;)V",
+                "(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Landroid/net/Uri;)V",
                 QtAndroid::androidContext().object(),
-                titleJni.object<jstring>(), messageJni.object<jstring>(), iconJni.object<jstring>(), uriJni.object<jobject>());
+                titleJni.object<jstring>(), messageJni.object<jstring>(), uriJni.object<jobject>());
 #else
     Q_UNUSED(title)
     Q_UNUSED(body)
-    Q_UNUSED(icon)
     Q_UNUSED(data)
 #endif
 }
