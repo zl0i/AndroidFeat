@@ -11,7 +11,8 @@ SOURCES += \
         src/appcore.cpp \
         src/deeplinkshandler.cpp \
         main.cpp \
-        src/notificationworker.cpp
+        src/notificationworker.cpp \
+        src/oauthflow.cpp
 
 RESOURCES += qml.qrc \
         icons.qrc
@@ -55,7 +56,7 @@ android {
         android/res/values/color.xml \
         android/res/values/libs.xml \
         android/res/values/strings.xml \
-        android/src/com/zloi/firebase/test/CustomActivity.java \
+    android/src/com/zloi/firebase/test/MainActivity.java \
         android/src/com/zloi/firebase/test/Notification.java
 
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
@@ -69,4 +70,5 @@ android {
 HEADERS += \
     src/appcore.h \
     src/deeplinkshandler.h \
-    src/notificationworker.h
+    src/notificationworker.h \
+    src/oauthflow.h

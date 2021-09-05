@@ -23,7 +23,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.RemoteMessage;
 
-import com.zloi.firebase.test.CustomActivity;
+import com.zloi.firebase.test.MainActivity;
 
 public class Notification extends FirebaseMessagingService {
 
@@ -71,7 +71,7 @@ public class Notification extends FirebaseMessagingService {
 
     public static void sendNotification(Context context, String title, String body, Uri data) {
         try {
-            Intent intent = new Intent(context, CustomActivity.class);
+            Intent intent = new Intent(context, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             intent.setData(data);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent,

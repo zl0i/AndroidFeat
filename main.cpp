@@ -4,6 +4,7 @@
 
 #include "src/appcore.h"
 #include "src/notificationworker.h"
+#include "src/oauthflow.h"
 #include "src/deeplinkshandler.h"
 
 int main(int argc, char *argv[])
@@ -14,13 +15,13 @@ int main(int argc, char *argv[])
     NotificationWorker *worker = NotificationWorker::instance();
 
     QGuiApplication app(argc, argv);
-
     QQmlApplicationEngine engine;
 
     AppCore core;
     DeepLinksHandler dlHandler;
     qDebug() << "push token:" << worker->getToken();
     engine.rootContext()->setContextProperty("_notify", worker);
+    engine.rootContext()->setContextProperty("_oauth", new OAuthFlow());
     engine.rootContext()->setContextProperty("_appCore", &core);
     engine.rootContext()->setContextProperty("_deepLinks", &dlHandler);
 

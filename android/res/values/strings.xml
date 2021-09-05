@@ -17,4 +17,5 @@
     <string name="default_notification_channel_name" translatable="true">Weather</string>
     <string name="msg_subscribe_failed">Failed to subscribe to weather topic</string>
     <string name="fcm_message">FCM Message</string>
+    <integer name="com_vk_sdk_AppId">7943678</integer>
 </resources>
