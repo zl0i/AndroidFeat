@@ -18,9 +18,10 @@ public:
 private:
     QAndroidJniEnvironment env;
     static void onVkLogin(JNIEnv  *env, jobject obj, jstring msg);
+    static void onYaLogin(JNIEnv  *env, jobject obj, jstring msg);
 
 public slots:
-    void vkLogin();
+    void oAuthLogin(QString service);
 
 };
 

@@ -16,27 +16,23 @@ Item {
                 {
                     'icon': "qrc:/icons/google.svg",
                     'title': qsTr("Войти с помощью Google"),
-                    'grant': () => _oauth.vkLogin()
+                    'service': "google"
                 },
                 {
                     'icon': "qrc:/icons/vk.svg",
                     'title': qsTr("Войти с помощью ВКонтакте"),
-                    'grant': () => _oauth.vkLogin()
+                    'service': "vk"
                 },
                 {
                     'icon': "qrc:/icons/yandex.svg",
                     'title': qsTr("Войти с помощью Google"),
-                    'grant': () => _oauth.vkLogin()
+                    'service': "ya"
                 }
             ]
             delegate: OAuthElement {
                 icon: modelData.icon
                 text: modelData.title
-                onLogin: _oauth.vkLogin()
-                //onLogin: modelData.class.googleGrant()
-                onRequestUserInfo: {
-
-                }
+                onLogin: _oauth.oAuthLogin(modelData.service)
             }
         }
     }

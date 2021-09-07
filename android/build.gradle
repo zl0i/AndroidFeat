@@ -2,6 +2,7 @@ buildscript {
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
 
     dependencies {
@@ -15,6 +16,7 @@ buildscript {
 repositories {
     google()
     jcenter()
+    mavenCentral()
 }
 
 apply plugin: 'com.android.application'
@@ -79,8 +81,9 @@ android {
         applicationId "com.zloi.firebase.test"
         multiDexEnabled = true
         resConfig "en"
-        minSdkVersion = qtMinSdkVersion
+        minSdkVersion = 26
         targetSdkVersion = qtTargetSdkVersion
+        manifestPlaceholders = [YANDEX_CLIENT_ID:'e843c0ced9934cb3b39ee73ed8f1958a']
     }
 
 
@@ -97,6 +100,7 @@ dependencies {
 
      implementation 'com.vk:android-sdk-core:3.0.0'
      implementation 'com.vk:android-sdk-api:3.0.0'
+     implementation 'com.yandex.android:authsdk:2.3.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
