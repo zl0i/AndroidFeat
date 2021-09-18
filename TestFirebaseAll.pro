@@ -9,6 +9,7 @@ CONFIG += c++11
 
 SOURCES += \
         src/appcore.cpp \
+        src/chrometabs.cpp \
         src/deeplinkshandler.cpp \
         main.cpp \
         src/notificationworker.cpp \
@@ -69,6 +70,7 @@ android {
 
 HEADERS += \
     src/appcore.h \
+    src/chrometabs.h \
     src/deeplinkshandler.h \
     src/notificationworker.h \
     src/oauthflow.h

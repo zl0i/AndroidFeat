@@ -6,6 +6,7 @@
 #include "src/notificationworker.h"
 #include "src/oauthflow.h"
 #include "src/deeplinkshandler.h"
+#include "src/chrometabs.h"
 
 int main(int argc, char *argv[])
 {
@@ -24,6 +25,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("_oauth", new OAuthFlow());
     engine.rootContext()->setContextProperty("_appCore", &core);
     engine.rootContext()->setContextProperty("_deepLinks", &dlHandler);
+    engine.rootContext()->setContextProperty("_tabs", new ChromeTabs());
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

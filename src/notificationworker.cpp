@@ -83,8 +83,7 @@ void NotificationWorker::sendNotification(QString title, QString body, QString d
                 "com/zloi/firebase/test/Notification",
                 "parseUri",
                 "(Ljava/lang/String;)Landroid/net/Uri;",
-                dataJni.object<jstring>()
-                );
+                dataJni.object<jstring>());
 
     QAndroidJniObject::callStaticMethod<void>(
                 "com/zloi/firebase/test/Notification",

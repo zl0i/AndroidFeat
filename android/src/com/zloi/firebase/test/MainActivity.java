@@ -3,6 +3,8 @@ package com.zloi.firebase.test;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import androidx.browser.customtabs.CustomTabsIntent;
+import android.graphics.Color;
 import android.net.Uri;
 
 import com.vk.api.sdk.VK;
@@ -53,6 +55,13 @@ public class MainActivity extends org.qtproject.qt5.android.bindings.QtActivity 
         final YandexAuthLoginOptions.Builder loginOptionsBuilder =  new YandexAuthLoginOptions.Builder();
         final Intent intent = sdk.createLoginIntent(loginOptionsBuilder.build());
         startActivityForResult(intent, REQUEST_CODE_YANDEX);
+    }
+
+    public void openChromeTabs(String url) {
+        CustomTabsIntent customTabsIntent = new CustomTabsIntent.Builder()
+                .setToolbarColor(Color.parseColor("#1A1A1A"))
+                .build();
+        customTabsIntent.launchUrl(this, Uri.parse(url));
     }
 
     @Override
