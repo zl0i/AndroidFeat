@@ -82,7 +82,7 @@ android {
         multiDexEnabled = true
         resConfig "en"
         minSdkVersion = 26
-        targetSdkVersion = qtTargetSdkVersion
+        targetSdkVersion = 30
         manifestPlaceholders = [YANDEX_CLIENT_ID:'e843c0ced9934cb3b39ee73ed8f1958a']
     }
 

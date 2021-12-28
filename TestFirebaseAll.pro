@@ -40,8 +40,6 @@ android {
         android/google-services.json \
         android/gradle/wrapper/gradle-wrapper.jar \
         android/gradle/wrapper/gradle-wrapper.properties \
-        android/gradlew \
-        android/gradlew.bat \
         android/res/drawable-hdpi/firebase_lockup_400.png \
         android/res/drawable-hdpi/notificationicon.png \
         android/res/drawable-hdpi/icon.png \
@@ -74,3 +72,6 @@ HEADERS += \
     src/deeplinkshandler.h \
     src/notificationworker.h \
     src/oauthflow.h
+
+DISTFILES += \
+    android/gradle.properties
