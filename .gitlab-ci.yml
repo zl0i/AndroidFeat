@@ -1,7 +1,7 @@
 variables:
   PROJECT_NAME: TestFirebaseAll
 
-stages:  
+stages:
   - build
   - deploy
 
@@ -14,13 +14,12 @@ build-arm64:
       - ./dist/build/outputs/
     expire_in: 1 week
   script:
-    - export
     - mkdir build
     - cd build
     - qmake ../${PROJECT_NAME}.pro -spec android-clang "CONFIG+=qtquickcompiler" ANDROID_ABIS="arm64-v8a"
     - make
     - make INSTALL_ROOT=../dist install
-    - cd .. 
+    - cd ..
     - sudo chown -R $(whoami) $ANDROID_HOME
     - androiddeployqt --input ./build/android-${PROJECT_NAME}-deployment-settings.json --output ./dist --aab --deployment bundled --gradle --release
 
@@ -30,5 +29,5 @@ deploy:
   before_script:
     - export FIREBASE_TOKEN=${FIREBASE_TOKEN}
   script:
-    - export
-    - firebase projects:list 
+    - ls
+    - firebase projects:list
