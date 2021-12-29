@@ -29,5 +29,5 @@ deploy:
   before_script:
     - export FIREBASE_TOKEN=${FIREBASE_TOKEN}
   script:
-    - ls
+    - ls -R ./dist
     - firebase projects:list
