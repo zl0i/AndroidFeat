@@ -11,8 +11,10 @@ build-arm64:
   artifacts:
     name: aab-arm64
     paths:
-      - ./dist/build/outputs/
+      - ./dist/build/outputs/bundle/
     expire_in: 1 week
+  before_script:
+    - echo ${KEYSTORE_FILE} | base64 -d> release.keystore
   script:
     - mkdir build
     - cd build
@@ -21,7 +23,8 @@ build-arm64:
     - make INSTALL_ROOT=../dist install
     - cd ..
     - sudo chown -R $(whoami) $ANDROID_HOME
-    - androiddeployqt --input ./build/android-${PROJECT_NAME}-deployment-settings.json --output ./dist --aab --deployment bundled --gradle --release
+    - androiddeployqt --input ./build/android-${PROJECT_NAME}-deployment-settings.json --output ./dist 
+      --aab --deployment bundled --gradle --jarsigner --sign ./release.keystore ${KEY_ALIAS} --storepass ${KEY_PASSWORD}
 
 deploy:
   stage: deploy
@@ -29,5 +32,7 @@ deploy:
   before_script:
     - export FIREBASE_TOKEN=${FIREBASE_TOKEN}
   script:
-    - ls -R ./dist
-    - firebase projects:list
+    - ls -R ./dist/build/outputs/bundle/
+    - firebase appdistribution:distribute ./dist/build/outputs/bundle/release/dist-release.aab
+      --app ${AppID}
+      --release-notes "Bug fixes and improvements"
