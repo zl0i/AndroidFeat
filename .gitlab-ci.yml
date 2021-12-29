@@ -14,8 +14,9 @@ build-arm64:
       - ./dist/build/outputs/bundle/
     expire_in: 1 week
   before_script:
-    - echo ${KEYSTORE_FILE} | base64 -d> release.keystore
+    - echo ${KEYSTORE_FILE} | base64 -d > ./release.keystore
   script:
+    - ls
     - mkdir build
     - cd build
     - qmake ../${PROJECT_NAME}.pro -spec android-clang "CONFIG+=qtquickcompiler" ANDROID_ABIS="arm64-v8a"
