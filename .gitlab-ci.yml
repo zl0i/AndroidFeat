@@ -1,0 +1,33 @@
+stages:  
+  - build
+  - deploy
+
+
+
+build:
+  stage: build
+  image: rabits/qt:5.15-android
+  artifacts:
+    name: aab-builds
+    paths:
+      - ./dist/build/outputs/
+    expire_in: 1 week
+  script:
+    - export
+    - mkdir build
+    - cd build
+    - qmake ../fusion-board/FusionBoard.pro -spec android-clang "CONFIG+=qtquickcompiler" ANDROID_ABIS="x86"
+    - make
+    - make INSTALL_ROOT=../dist install
+    - cd .. 
+    - sudo chown -R $(whoami) $ANDROID_HOME
+    - androiddeployqt --input ./build/android-FusionBoard-deployment-settings.json --output ./dist --aab --deployment bundled --gradle --release
+
+deploy:
+  stage: deploy
+  image: zl0i/firebase-cli:latest
+  before_script:
+    - export FIREBASE_TOKEN=${FIREBASE_TOKEN}
+  script:
+    - export
+    - firebase projects:list 
