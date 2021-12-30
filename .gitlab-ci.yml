@@ -5,7 +5,7 @@ stages:
   - build
   - deploy
 
-build-arm64:
+.build_template:
   stage: build
   image: rabits/qt:5.15-android
   artifacts:
@@ -13,27 +13,57 @@ build-arm64:
     paths:
       - ./dist/build/outputs/bundle/
     expire_in: 1 week
+  variables:
+    ANDROID_ABIS: ""
   before_script:
     - echo ${KEYSTORE_FILE} | base64 -d > ./release.keystore
   script:
     - ls
     - mkdir build
     - cd build
-    - qmake ../${PROJECT_NAME}.pro -spec android-clang "CONFIG+=qtquickcompiler" ANDROID_ABIS="arm64-v8a"
+    - qmake ../${PROJECT_NAME}.pro -spec android-clang "CONFIG+=qtquickcompiler" ANDROID_ABIS="${ANDROID_ABIS}"
     - make
     - make INSTALL_ROOT=../dist install
     - cd ..
     - sudo chown -R $(whoami) $ANDROID_HOME
-    - androiddeployqt --input ./build/android-${PROJECT_NAME}-deployment-settings.json --output ./dist 
+    - androiddeployqt --input ./build/android-${PROJECT_NAME}-deployment-settings.json --output ./dist
       --aab --deployment bundled --gradle --jarsigner --sign ./release.keystore ${KEY_ALIAS} --storepass ${KEY_PASSWORD}
 
-deploy:
+build-v8a:
+  extends: .build_template
+  variables:
+    ANDROID_ABIS: "arm64-v8a"
+
+build-v7a:
+  extends: .build_template
+  variables:
+    ANDROID_ABIS: "armeabi-v7a"
+
+.deploy_google:
   stage: deploy
-  image: zl0i/firebase-cli:latest
+  image: zl0i/fastlane-ci:latest
   before_script:
-    - export FIREBASE_TOKEN=${FIREBASE_TOKEN}
+    - echo ${GOOGLE_SERVICE} | base64 -d > ./google_play_api_key.json
+
+deploy_android_internal:
+  extends: .deploy_google
   script:
-    - ls -R ./dist/build/outputs/bundle/
-    - firebase appdistribution:distribute ./dist/build/outputs/bundle/release/dist-release.aab
-      --app ${AppID}
-      --release-notes "Bug fixes and improvements"
+    - bundle exec fastlane internal
+
+deploy_android_alfa:
+  extends: .deploy_google
+  script:
+    - bundle exec fastlane promote_internal_to_alpha
+  when: manual
+
+deploy_android_beta:
+  extends: .deploy_google
+  script:
+    - bundle exec fastlane promote_alpha_to_beta
+  when: manual
+
+deploy_android_production:
+  extends: .deploy_google
+  script:
+    - bundle exec fastlane promote_beta_to_production
+  when: manual
