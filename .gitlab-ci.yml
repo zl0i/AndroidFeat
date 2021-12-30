@@ -20,7 +20,7 @@ stages:
   script:    
     - qmake ./app/${PROJECT_NAME}.pro -spec android-clang "CONFIG+=qtquickcompiler" ANDROID_ABIS="${ANDROID_ABIS}"
     - make
-    - make INSTALL_ROOT=../dist install
+    - make INSTALL_ROOT=./dist install
     - sudo chown -R $(whoami) $ANDROID_HOME
     - androiddeployqt --input ./android-${PROJECT_NAME}-deployment-settings.json --output ./dist
       --aab --deployment bundled --gradle --jarsigner --sign ./release.keystore ${KEY_ALIAS} --storepass ${KEY_PASSWORD}
