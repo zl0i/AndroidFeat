@@ -8,23 +8,19 @@ stages:
 .build_template:
   stage: build
   image: rabits/qt:5.15-android
-  artifacts:
-    name: aab-arm64
-    paths:
-      - ./dist/build/outputs/bundle/
-    expire_in: 1 week
   variables:
     ANDROID_ABIS: ""
+  artifacts:
+    name: aab-${ANDROID_ABIS}
+    paths:
+      - ./dist/build/outputs/bundle/
+    expire_in: 1 week  
   before_script:
     - echo ${KEYSTORE_FILE} | base64 -d > ./release.keystore
-  script:
-    - ls
-    - mkdir build
-    - cd build
+  script:    
     - qmake ../${PROJECT_NAME}.pro -spec android-clang "CONFIG+=qtquickcompiler" ANDROID_ABIS="${ANDROID_ABIS}"
     - make
     - make INSTALL_ROOT=../dist install
-    - cd ..
     - sudo chown -R $(whoami) $ANDROID_HOME
     - androiddeployqt --input ./build/android-${PROJECT_NAME}-deployment-settings.json --output ./dist
       --aab --deployment bundled --gradle --jarsigner --sign ./release.keystore ${KEY_ALIAS} --storepass ${KEY_PASSWORD}
@@ -48,6 +44,7 @@ build-v7a:
 deploy_android_internal:
   extends: .deploy_google
   script:
+    - ls -R 
     - bundle exec fastlane internal
 
 deploy_android_alfa:
