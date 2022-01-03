@@ -22,7 +22,7 @@ stages:
     - make
     - make INSTALL_ROOT=./${ANDROID_ABIS} install
     - sudo chown -R $(whoami) $ANDROID_HOME
-    - androiddeployqt --input ./android-${PROJECT_NAME}-deployment-settings.json --output ./dist
+    - androiddeployqt --input ./android-${PROJECT_NAME}-deployment-settings.json --output ./${ANDROID_ABIS}
       --aab --deployment bundled --gradle --jarsigner --sign ./release.keystore ${KEY_ALIAS} --storepass ${KEY_PASSWORD}
 
 build-v8a:
