@@ -4,7 +4,8 @@ platform :android do
 
   desc "Submit a new Internal Build to Play Store"
   lane :internal do
-    upload_to_play_store(track: 'internal', aab: './dist/build/outputs/bundle/release/dist-release.aab')
+    upload_to_play_store(track: 'internal', aab: './armeabi-v7a/build/outputs/bundle/release/armeabi-v7a-release.aab')
+    upload_to_play_store(track: 'internal', aab: './arm64-v8a/build/outputs/bundle/release/arm64-v8a-release.aab')
   end
 
   desc "Promote Internal to Alpha"
