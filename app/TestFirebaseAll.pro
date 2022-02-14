@@ -13,7 +13,8 @@ SOURCES += \
         src/deeplinkshandler.cpp \
         main.cpp \
         src/notificationworker.cpp \
-        src/oauthflow.cpp
+        src/oauthflow.cpp \
+        src/smsreceiver.cpp
 
 RESOURCES += qml.qrc \
         icons.qrc
@@ -71,7 +72,9 @@ HEADERS += \
     src/chrometabs.h \
     src/deeplinkshandler.h \
     src/notificationworker.h \
-    src/oauthflow.h
+    src/oauthflow.h \
+    src/smsreceiver.h
 
 DISTFILES += \
-    android/gradle.properties
+    android/gradle.properties \
+    android/src/com/zloi/firebase/test/SMSReceiver.java

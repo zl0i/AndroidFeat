@@ -43,4 +43,11 @@ ApplicationWindow {
     LinkPopup {
         id: _linkPopup
     }
+
+    Connections {
+        target: _sms
+        function onReceivedCode(code) {
+            console.log(code)
+        }
+    }
 }

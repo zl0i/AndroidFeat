@@ -7,6 +7,7 @@
 #include "src/oauthflow.h"
 #include "src/deeplinkshandler.h"
 #include "src/chrometabs.h"
+#include "src/smsreceiver.h"
 
 int main(int argc, char *argv[])
 {
@@ -26,6 +27,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("_appCore", &core);
     engine.rootContext()->setContextProperty("_deepLinks", &dlHandler);
     engine.rootContext()->setContextProperty("_tabs", new ChromeTabs());
+    engine.rootContext()->setContextProperty("_sms", SMSReceiver::instance());
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
